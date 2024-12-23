@@ -5,6 +5,10 @@ export const Container = styled.div`
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction:column;
 `;
 
 export const Table = styled.table`

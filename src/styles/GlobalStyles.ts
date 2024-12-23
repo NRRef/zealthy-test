@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle, keyframes } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   body {
@@ -9,14 +9,14 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
-import styled, { keyframes } from 'styled-components';
-
 const spin = keyframes`
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 `;
 
 export const Spinner = styled.div`
+  display:flex;
+  align-self:center;
   width: 50px;
   height: 50px;
   border: 5px solid #f3f3f3;

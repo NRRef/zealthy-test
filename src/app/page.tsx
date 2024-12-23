@@ -1,25 +1,13 @@
 'use client'
 
-import styled from 'styled-components';
-
-const Button = styled.button`
-  background: ${(props) => props.theme.colors.primary};
-  color: white;
-  border: none;
-  padding: 0.5em 1em;
-  border-radius: 5px;
-  cursor: pointer;
-
-  &:hover {
-    background: #0056b3;
-  }
-`;
+import { Container } from './form/[id]/styles';
+import { Button } from './admin/styles';
 
 const Home = () => (
-  <div>
-    <h1>Olá, Next.js!</h1>
-    <Button>Clique em mim</Button>
-  </div>
+  <Container>
+    <h1>Admin Section</h1>
+    <Button href='/admin/form/'>Enter</Button>
+  </Container>
 );
 
 export default Home;
