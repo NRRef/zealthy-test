@@ -1,9 +1,9 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
-export async function GET(request: Request) {
-    const { searchParams } = new URL(request.url);
-    const id = searchParams.get('id');
+export async function GET(request: NextRequest) {
+    const id = request.nextUrl.searchParams.get('id');
+
 
     if (id) {
         try {
@@ -13,7 +13,11 @@ export async function GET(request: Request) {
             if (!form) {
                 return NextResponse.json({ error: 'Form not found' }, { status: 404 });
             }
-            return NextResponse.json(form);
+          return NextResponse.json(form, {
+            headers: {
+              'Cache-Control': 'no-store, max-age=0',
+            },
+          });
         } catch (error) {
             console.error('Error fetching form:', error);
             return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });

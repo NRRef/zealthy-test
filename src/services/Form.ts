@@ -1,26 +1,45 @@
+import { config } from "../../config";
+
+const getBaseUrl = () => {
+    const isServer = typeof window === 'undefined';
+    return isServer ? config.baseUrl : '';
+};
+
 export const getFormById = async (id: string) => {
+    const baseUrl = getBaseUrl();
     try {
-        const response = await fetch(`/api/forms?id=${id}`);
+        const response = await fetch(`${baseUrl}/api/forms?id=${id}`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
         if (!response.ok) {
             throw new Error('Failed to get form');
         }
         const data = await response.json();
-        return data
+        return data;
     } catch (e) {
         console.error('Error requesting form:', e);
+        throw e;
     }
 };
 
 export const getForms = async () => {
+    const baseUrl = getBaseUrl();
     try {
-        const response = await fetch(`/api/forms`);
+        const response = await fetch(`${baseUrl}/api/forms`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
         if (!response.ok) {
-            throw new Error('Failed to get form');
+            throw new Error('Failed to get forms');
         }
         const data = await response.json();
-        return data
+        return data;
     } catch (e) {
-        console.error('Error requesting form:', e);
+        console.error('Error requesting forms:', e);
+        throw e;
     }
 };
 
