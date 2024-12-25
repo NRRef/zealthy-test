@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+export const revalidate = 0;
+export const dynamic = 'force-dynamic'
 
 export async function POST(request: Request) {
     try {
@@ -33,11 +35,7 @@ export async function POST(request: Request) {
                 formId: parseInt(formId)
             }
         });
-        return NextResponse.json({ message: 'Submission created', submission }, { status: 201 }, {
-            headers: {
-                'Cache-Control': 'no-store, max-age=0',
-            },
-        });
+        return NextResponse.json({ message: 'Submission created', submission }, { status: 201 });
     } catch (e) {
         console.error('Error creating submission:', e);
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });

@@ -11,6 +11,7 @@ export const getFormById = async (id: string) => {
         const response = await fetch(`${baseUrl}/api/forms?id=${id}`, {
             headers: {
                 'Content-Type': 'application/json',
+                'Cache-Control': 'no-store, max-age=0',
             },
         });
         if (!response.ok) {
@@ -30,6 +31,7 @@ export const getForms = async () => {
         const response = await fetch(`${baseUrl}/api/forms`, {
             headers: {
                 'Content-Type': 'application/json',
+                'Cache-Control': 'no-store, max-age=0',
             },
         });
         if (!response.ok) {

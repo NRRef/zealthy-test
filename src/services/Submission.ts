@@ -6,6 +6,7 @@ export const getSubmissions = async () => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                'Cache-Control': 'no-store, max-age=0',
             },
         });
 

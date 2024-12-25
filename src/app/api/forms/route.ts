@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+export const revalidate = 0;
+export const dynamic = 'force-dynamic'
 
 export async function GET(request: NextRequest) {
     const id = request.nextUrl.searchParams.get('id');
@@ -48,11 +50,7 @@ export async function POST(request: Request) {
       data: { name, steps },
     });
 
-    return NextResponse.json({ message: 'Form created', form }, { status: 201 }, {
-      headers: {
-        'Cache-Control': 'no-store, max-age=0',
-      },
-    });
+    return NextResponse.json({ message: 'Form created', form }, { status: 201 });
   } catch (error) {
     console.error('Error creating form:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
